@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar [ngClass]="!selectedLevel ? 'primary-toolbar': 'secondary-toolbar'">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center ion-text-uppercase math-title title-space">
+      Number Cruncher
+    </ion-title>
+    <!-- <ion-badge slot="end" color="light" class="header-badge"> <ion-icon name="ribbon-outline"></ion-icon>{{question*100}}</ion-badge> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [ngClass]="!selectedLevel ? 'level-screen': ''">
+  <app-level-selector *ngIf="!selectedLevel; else questions_templat" (onSelectData)="onSelect($event)">
+  </app-level-selector>
+  <ng-template #questions_templat>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="ion-text-center ion-score">Score {{score}}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <span class="number">{{question}}</span>
+          <ion-progress-bar color="success" value="{{question/(question > 6 ? 20 : 10)}}"></ion-progress-bar>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-text class="font-size-3">Please find the result</ion-text>
+      </ion-row>
+    </ion-grid>
+    <div [style.height.px]="deviceHeight" class="d-flex">
+      <ion-grid class="center-0">
+        <ion-row class="ion-justify-content-center ion-padding-bottom">
+          <ion-col *ngIf="question > 1" class='box-number-a box-shadow'>
+            <span>{{lastAnswer}}</span>
+          </ion-col>
+          <ion-col *ngFor="let item of displayData; let even = even;let odd = odd"
+            [class]="(question > 1 ? odd : even) ? 'box-number-a box-shadow': 'box-operation'">
+            <span [innerHTML]="item == '*' ? '×' : item"></span>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center"
+          *ngIf="question > 1 ? displayData?.length >= question*2 : true">
+          <ion-col size="8" class="box-result ion-text-center"
+            [ngClass]="{'shakeit-on-right': buttonValue === 'right', 'shakeit-on-wrong':buttonValue === 'wrong' , 'shakeit-on-skip': buttonValue === 'skip' }">
+            {{enteredAnswer ? enteredAnswer : '?'}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="ion-padding-vertical bottom-0" >
+      <app-keyboard [enteredAnswer]="enteredAnswer" [style.visibility]="(question > 1 ? displayData?.length >= question*2 : true) ? 'visible': 'hidden'" (onClick)="onClickNumbers($event)" [showOperators]="false"></app-keyboard>
+      </ion-grid>
+    </div>
+  </ng-template>
+</ion-content>
+<app-footer class="box-shadow" *ngIf="selectedLevel" [isQuestionLoaded]="question > 1 ? displayData?.length >= question*2 : true" [disableSkip]="disableSkip" (action)="onAction($event)"></app-footer>

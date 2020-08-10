@@ -1,0 +1,129 @@
+
+@font-face {
+  font-family: poppinsregular;
+  src: url('../../assets/font/Poppins-Regular.ttf');
+}
+
+ion-header::after {
+  display: none;
+}
+
+.transprent-btn{
+  --background: transparent;
+  --box-shadow: none;
+  position: relative;
+  z-index: 99;
+  --background-activated: transparent;
+  &:hover{
+      --background-hover: transparent;
+  }
+}
+.home-icon{
+  position: relative;
+  bottom: 15px;
+  ion-icon{
+    font-size: 5rem;
+    text-align: center;
+    // padding-top: 20px;
+    color: #fff;
+  }
+  .title{
+    color:#fff
+  }
+}
+.home-card{
+  background: #e9f6ff;
+  margin: 1px;
+  border: 4px solid #fff;
+  border-radius: 20px;
+  ion-card-content{
+    padding: 6px;
+    ion-icon{
+      font-size: 4rem;
+    }
+    p{font-size: 1.05rem;}
+  }
+  .home-grid{
+    padding: 10px;
+    margin: 4px auto;
+  }
+  .practice{
+    background: linear-gradient(#549ffc, #18ccff); 
+  }
+  .practice-text{
+    color: #549ffc;
+  }
+  .battle{
+    background: linear-gradient(#d69af9, #bb7bff);
+  }
+  .battle-text{
+    color:#bb7bff
+  }
+  .friends{
+    background: linear-gradient(#fdd243, #ff9925);
+  }
+  .friends-text{
+    color:#ff9925
+  }
+  .profile{
+    background: linear-gradient(#0afb92, #06d4fd);
+  }
+  .profile-text{
+    color:#06d4fd
+  }
+  .numbercrun{
+    background: linear-gradient(#92e621, #58d50c);
+  }
+  .number-text{
+    color:#59d50d
+  }
+  
+}
+.content-center{
+  height: 90%;
+}
+ion-back-button{
+  --color: white ;
+}
+@media  (min-width: 767px) {
+  .home-card{
+    ion-card-content{
+      ion-icon{
+        font-size: 8.3rem;
+      }
+      p{font-size: 2rem;}
+    }
+  }
+}
+.icon-size{
+  font-size: 1.8rem;
+}
+.card-disabled{
+  opacity: 0.4;
+}
+.home-flex{
+  display: flex;
+  place-content: space-between;
+  position: relative;
+  top:15px;
+  img{
+    width: 120px;
+    padding-left: 18px;
+  }
+}
+.lg-bg {
+  height: 200px;
+}
+.profile-img{
+  width: 20vw;
+  height: 20vw;
+}
+.content-center{
+  height: 95%;
+}
+
+// .home-grid{
+//   position: relative;
+//   bottom: 45px;
+//   padding: 0px 20px;
+// }

@@ -1,0 +1,20 @@
+<ion-grid *ngIf="questionsData && questionsData.length" class="ion-padding-vertical center-0">
+  <ion-row class="ion-justify-content-center">
+    <ng-container *ngFor="let item of questionsData; let l = last; let e = even; let o = odd;let i = index">
+      <ion-col [ngClass]="{'box-number-a box-shadow': e === true, 'box-operation':o === true }" *ngIf="i+1 !== inputQuestion?.length">
+        <span>{{item == '?' ?  ((!enteredAnswer) ? '?' : enteredAnswer) : item}}</span>
+      </ion-col>
+    </ng-container>
+  </ion-row>
+  <ion-row class="ion-justify-content-center">
+    <ng-container *ngIf="questionsData?.length === inputQuestion?.length">
+      <ion-col size="8" class="box-result ion-text-center"
+        [ngClass]="{'shakeit-on-right': answerBoxClass === 'right', 'shakeit-on-wrong':answerBoxClass === 'wrong' , 'shakeit-on-skip': answerBoxClass === 'skip' }">
+         {{!enteredAnswer ? '?' : enteredAnswer}}
+      </ion-col>
+    </ng-container>
+  </ion-row>
+</ion-grid>
+<ion-grid @fadein class="ion-padding-vertical bottom-0">
+<app-keyboard [enteredAnswer]="enteredAnswer" [style.visibility]="questionsData?.length === inputQuestion?.length ? 'visible': 'hidden'" (onClick)="enteredNumber($event)" [showOperators]="false"></app-keyboard>
+</ion-grid>

@@ -1,0 +1,8 @@
+{
+  "name": "mathwars",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

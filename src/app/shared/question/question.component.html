@@ -1,0 +1,25 @@
+<ion-grid *ngIf="inputQuestion && inputQuestion.length" [ngClass]="showOperators ? 'center-p': ' '" class="ion-padding-vertical center-0">
+  <ion-row class="ion-justify-content-center">
+    <ng-container *ngFor="let item of inputQuestion; let l = last; let e = even; let o = odd">
+      <ion-col
+        [ngClass]="{'box-operation':o === true && operatorClass === true, 'box-number-a sequence-number' : operatorClass === false, 'box-number-b box-shadow': e === true && operatorClass === true, 'shakeit-on-right': answerBoxClass === 'right' && item == '?' && (o == false  || operatorClass === false), 'shakeit-on-wrong':answerBoxClass === 'wrong' && item == '?' && (o == false || operatorClass === false), 'shakeit-on-skip': answerBoxClass === 'skip' && item == '?' && (o == false || operatorClass === false), 'shakeit-on-wrong-operator': answerBoxClass === 'wrong' && item == '?' && o == true && operatorClass === true,
+      'shakeit-on-right-operator': answerBoxClass === 'right' && item == '?' && o == true && operatorClass === true,
+      'shakeit-on-skip-operator': answerBoxClass === 'skip' && item == '?' && o == true && operatorClass === true, 'box-result-sequence': operatorClass === false && item == '?'}"
+        *ngIf="!operatorClass || !l">
+        <span>{{item == '?' ?  ((!enteredAnswer) ? '?' : enteredAnswer) : item}}</span>
+      </ion-col>
+    </ng-container>
+  </ion-row>
+  <ion-row class="ion-justify-content-center" *ngIf="operatorClass">
+    <ng-container *ngFor="let item of inputQuestion;let l = last">
+      <ion-col size="8" class="box-result ion-text-center"
+        [ngClass]="{'shakeit-on-right': answerBoxClass === 'right' && item == '?', 'shakeit-on-wrong':answerBoxClass === 'wrong' && item == '?', 'shakeit-on-skip': answerBoxClass === 'skip' && item == '?' }"
+        *ngIf="l">
+        {{item == '?' ?  (!enteredAnswer ? '?' : enteredAnswer) : item}}
+      </ion-col>
+    </ng-container>
+  </ion-row>
+</ion-grid>
+<ion-grid @fadein [ngClass]="showOperators ? 'bottom-p': ' '" class="ion-padding-vertical bottom-0">
+  <app-keyboard [enteredAnswer]="enteredAnswer" (onClick)="enteredNumber($event)" [showOperators]="showOperators"></app-keyboard>
+</ion-grid>

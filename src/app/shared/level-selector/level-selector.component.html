@@ -1,0 +1,32 @@
+
+  <!-- <ion-list class="ion-padding-bottom">
+    <ion-radio-group (ionChange)="onChange($event)">
+      <ion-list-header>
+        <ion-label class="ion-text-center select">Select Level</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Auto (Dynamic)</ion-label>
+        <ion-radio slot="start" color="success" value="dynamic"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Easy</ion-label>
+        <ion-radio slot="start" color="success" value="easy"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Medium</ion-label>
+        <ion-radio slot="start" color="tertiary" value="medium"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Hard</ion-label>
+        <ion-radio slot="start" color="danger" value="hard"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list> --> 
+  
+  <ion-text class="ion-text-center select">Select Level</ion-text>
+  <ion-button (click)="onClickLevel('easy')" expand="block" class="new-btn level-easy"  type ="submit">Easy</ion-button>
+  <ion-button (click)="onClickLevel('medium')" expand="block" class="new-btn level-medium"  type ="submit">Medium</ion-button>
+  <ion-button  (click)="onClickLevel('hard')" expand="block" class="new-btn level-hard"  type ="submit">Hard</ion-button>
+  <ion-button (click)="onClickLevel('dynamic')" expand="block" class="new-btn level-auto"  type ="submit">Auto</ion-button>

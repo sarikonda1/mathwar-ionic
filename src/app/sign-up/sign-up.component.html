@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="primary-toolbar lg-bg">
+    <!-- <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons> -->
+    <!-- <ion-title class="ion-text-center ion-text-uppercase math-title">
+      Math Wars
+    </ion-title> -->
+    <ion-title class="ion-text-center">
+      <img class="mathwar-logo" src="../../assets/img/logo.png" />
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+      <form [formGroup]="signupForm" class="formtop" autocomplete="off" (keyup.enter)="onSignUp()">
+        <h3 class="ion-text-center">Sign-Up</h3>
+        <ion-list lines="full" class="ion-no-margin ion-no-padding custon-bg">
+          <ion-item lines="none" class="ion-margin-horizontal ion-margin-top">
+            <ion-icon name="mail" slot="start" class="ion-input-icon"></ion-icon>
+            <ion-input type="text" formControlName="email" placeholder="Email" (keyup)="preventSpace($event,signupForm,'email')" (ionBlur)="trimSpaces(signupForm,'email')"></ion-input>
+          </ion-item>
+          <app-validators labelName='Email' [validationControl]="signupForm.controls.email"
+          [doValidate]="true">
+        </app-validators>
+        
+          <ion-item lines="none" class="ion-margin-horizontal">
+            <ion-icon name="person-outline" slot="start" class="ion-input-icon"></ion-icon>
+            <ion-input type="text" formControlName="username" placeholder="User Name" (keyup)="preventSpace($event,signupForm,'username')" (blur)="trimSpaces(signupForm,'username')"></ion-input>
+          </ion-item>
+          <app-validators labelName='User Name' [validationControl]="signupForm.controls.username"
+            [doValidate]="true">
+          </app-validators>
+          <ion-item lines="none" class="ion-margin-horizontal">
+            <ion-icon name="lock-closed-outline" slot="start" class="ion-input-icon"></ion-icon>
+            <ion-input type="text" formControlName="password" placeholder="Password" (keyup)="preventSpace($event,signupForm,'password')" (ionBlur)="trimSpaces(signupForm,'password')"></ion-input>
+          </ion-item>
+          <app-validators labelName='Password' [validationControl]="signupForm.controls.password"
+          [doValidate]="true">
+        </app-validators>
+        </ion-list>       
+        <div class="ion-text-center color-text">
+          <ion-label>click here <a (click)="loginPage()">Login</a></ion-label>
+        </div>
+        <ion-button expand="block" class="ion-margin-horizontal btn-ctm primary-btnbg" (click)="onSignUp()">Register
+        </ion-button>
+        
+        <ion-button color="medium" class="ion-margin btn-ctm" expand="block" (click)="service.onSkipNavigation()">Skip</ion-button>
+      </form>
+</ion-content>

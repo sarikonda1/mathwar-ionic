@@ -1,0 +1,55 @@
+<ion-header [translucent]="true" no-border no-shadow >
+  <ion-toolbar class="primary-toolbar lg-bg">
+    <!-- <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons> -->
+    <!-- <ion-title class="ion-text-center ion-text-uppercase math-title">
+      Math Wars
+    </ion-title> -->
+    <ion-title class="ion-text-center">
+      <img class="mathwar-logo" src="../../assets/img/logo.png" />
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <form [formGroup]="loginForm" class="formtop" autocomplete="off" (keyup.enter)="onLogin()">
+      <h3 class="ion-text-center ion-login">Login</h3>
+      <ion-list lines="full" class="ion-no-margin ion-no-padding custon-bg">
+        <ion-item lines="none" class="ion-margin-horizontal ion-margin-top">
+          <ion-icon name="person-outline" slot="start" class="ion-input-icon"></ion-icon>
+          <ion-input type="text" formControlName="username" placeholder="User Name" required (keyup)="preventSpace($event,loginForm,'username')" (ionBlur)="trimSpaces(loginForm,'username')" autocomplete="off"></ion-input>
+        </ion-item>
+        <app-validators labelName='User Name' [validationControl]="loginForm.controls.username"
+          [doValidate]="true">
+        </app-validators>
+        <ion-item lines="none" class="ion-margin-horizontal">
+          <ion-icon name="lock-closed-outline" slot="start" class="ion-input-icon"></ion-icon>
+          <ion-input type="password" formControlName="password" placeholder="Password" ((keyup)="preventSpace($event,loginForm,'password')" (ionBlur)="trimSpaces(loginForm,'password')" autocomplete="off"></ion-input>
+        </ion-item>
+        <app-validators labelName='Password' [validationControl]="loginForm.controls.password"
+          [doValidate]="true">
+        </app-validators>
+      </ion-list>
+      <ion-grid>
+        <ion-row class="ion-padding-horizontal">
+          <ion-col size="6">
+            <div class="flex small-font">              
+              <ion-checkbox [ngModelOptions]="{standalone: true}" [checked]="checkBox" color="primary"></ion-checkbox>
+              <ion-label (click)="onChange()">Remember me</ion-label>
+            </div>
+          </ion-col>
+          <ion-col size="6" class="ion-text-right">
+            <div class="small-font">
+              <a>Forget Password</a>
+            </div>          
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-button expand="block" class="ion-margin-horizontal btn-ctm primary-btnbg" (click)="onLogin()" type ="submit">Login</ion-button>
+      <div class="ion-text-center color-text">
+        click here to <a (click)="register()">Register</a>
+       </div>
+      <ion-button color="medium" class="ion-margin-horizontal btn-ctm" expand="block" (click)="service.onSkipNavigation()">Skip</ion-button>
+    </form>
+</ion-content>

@@ -1,0 +1,140 @@
+<ion-header [translucent]="true">
+  <ion-toolbar [ngClass]="endGame && battlePlayers.length ? 'primary-toolbar' : 'secondary-toolbar'">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center ion-text-uppercase math-title title-space">
+      {{endGame && battlePlayers.length ? 'Score' : 'Battle'}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+      <!--############# waiting for one more player code ################### -->
+      <div class="ion-padding-bottom waiting-player" *ngIf="!gameStarted">
+        <div class="ion-text-center waiting-icon" *ngIf="gameStatus">
+          <ion-avatar class="profile-img box-shadow">
+            <img *ngIf="imgUrl === ''" src="../../assets/icon/profile.png" class="box-shadow" />
+            <!-- <ion-icon *ngIf="!imgUrl" name="person-circle-outline" class="profile-img box-shadow">
+            </ion-icon> -->
+            <img *ngIf="imgUrl!==''" [src]="imgUrl" class="pro-dp box-shadow" />
+          </ion-avatar>
+          <span class="ion-padding-horizontal vs">Vs</span>
+          <ion-avatar class="default-img box-shadow">
+            <img src="../../assets/icon/profile.png" class="box-shadow" />
+          </ion-avatar> 
+        </div>
+        <div>
+          <ion-spinner name="dots"></ion-spinner>
+        </div>
+        <div class="waiting-text" *ngIf="gameStatus">
+          <ion-text >{{gameStatus?.message}}</ion-text>
+        </div>
+      </div>
+      <!--############# End waiting for one more player code ################### -->
+      <ion-grid *ngIf="!endGame && battleResponse && battlePlayers">
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <ion-chip outline class="timer" [ngClass]="mainService?.timeLeft > 100 ? 'more' : 'danger'">
+              <!-- <ion-icon name="timer"></ion-icon> -->
+              <img src="assets/img/timer.png" />
+              <ion-label>{{mainService?.timeLeft}} Sec</ion-label>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-gird *ngIf="!endGame && battleResponse && battlePlayers">
+          <ion-row>
+            <ion-col size="6" *ngFor="let player of battlePlayers; let e = even">
+              <div class="person-name">
+                <ion-text> {{ userId == player.userId ? 'You' : player.userdetails[0].username}}</ion-text>
+              </div>
+              <div class="ion-display-progress">
+                <ion-progress-bar value="{{player.score / battleResponse?.questions?.length}}"
+                [color]="e ? 'secondary' : 'primary'"></ion-progress-bar><span class="ion-curve">
+                  {{player.score}}</span>
+              </div>
+            </ion-col>          
+          </ion-row>
+      </ion-gird>
+      <ng-container *ngIf="!endGame && battleResponse">
+        <ng-container *ngFor="let question of battleResponse.questions; let i = index">
+          <ng-container *ngIf="i === currentQuestion">
+            <div [style.height.px]="deviceHeight" *ngIf="question?.answerType === 5; else all_quens">
+            <app-number-cruncher-question  [inputQuestion]="splittingQuestion(question, i)" [showOperators]="isShowOperator" (questionLoaded)="onQuestionLoaded($event)"
+            (sendAnswer)="enteredNumber($event)" [inputClass]="buttonValue" [enteredAnswer]="enteredAnswer">
+          </app-number-cruncher-question>
+          </div>
+
+            <ng-template #all_quens>
+              <div [style.height.px]="deviceHeight">
+              <app-question [inputQuestion]="splittingQuestion(question, i)" [showOperators]="isShowOperator"
+              (sendAnswer)="enteredNumber($event)" [inputClass]="buttonValue" [enteredAnswer]="enteredAnswer" [operatorClass]="operatorClassRequired">
+            </app-question>
+              </div>
+            </ng-template>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+  <ng-container *ngIf="endGame && battlePlayers.length">
+    <ion-row class="score-titles">
+      <ion-col size="4">
+        Rank
+      </ion-col>
+      <ion-col size="4" class="ion-text-center">
+        Name
+      </ion-col>
+      <ion-col size="4" class="ion-text-right">
+        Score
+      </ion-col>
+    </ion-row>
+    <ion-grid class="ion-no-padding">
+      <ion-card *ngFor="let player of battlePlayers; let i = index">
+        <ion-row [ngClass]="{'current-user': userId == player.userId}" class="score-card">
+          <ion-col size="2" class="score-rank ion-text-center">{{i + 1}}</ion-col>
+          <ion-col size="2" class="pro-dp">
+            <ion-avatar class="profile-img box-shadow">
+              <!-- <ion-icon name="person" class="profile-img box-shadow" *ngIf="player?.avatar==''"></ion-icon>  -->
+              <img *ngIf="player?.userdetails[0]?.avatar == '' || player?.userdetails[0]?.avatar == undefined" src="assets/icon/profile.png" class="default-image" />            
+              <img *ngIf="player?.userdetails[0]?.avatar !== '' || player?.userdetails[0]?.avatar !== undefined " [src]="imageUrl(player)" class="pro-dp box-shadow">
+            </ion-avatar>
+          
+            <!-- <img *ngIf="player?.userdetails[0]?.avatar !== '' || player?.userdetails[0]?.avatar !== undefined " [src]="imageUrl(player)" class="pro-dp box-shadow"> -->
+          </ion-col>
+          <ion-col size="6" class="score-name"> {{player.userdetails[0].username}}</ion-col>
+          <ion-col size="2" class="score-pts"> {{player.score}}</ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-grid>
+  </ng-container>
+</ion-content>
+<ion-footer class="box-shadow" *ngIf="!endGame && battleResponse && battlePlayers">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="3">
+        <ion-fab-button size="small" color="danger" class="footer-btn box-shadow" (click)="resetData()">
+          <!-- <ion-icon name="close-outline"></ion-icon> -->
+          <ion-avatar class="footer-grid close">
+            <img src="../../assets/icon/close.png" />
+          </ion-avatar>
+        </ion-fab-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-fab-button [disabled]="!isQuestionLoaded" size="small" color="warning" class="footer-btn box-shadow"
+          (click)="skip()">
+          <!-- <ion-icon name="flag-outline"></ion-icon> -->
+          <ion-avatar class="footer-grid eraser">
+            <img src="../../assets/icon/eraser.png" />
+          </ion-avatar>
+        </ion-fab-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-fab-button [disabled]="!isQuestionLoaded" size="small" color="success" class="footer-btn box-shadow" (click)="submitQuestion()">
+          <!-- <ion-icon name="checkmark-outline"></ion-icon> -->
+          <ion-avatar class="footer-grid right">
+            <img src="../../assets/icon/right.png" />
+          </ion-avatar>
+        </ion-fab-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

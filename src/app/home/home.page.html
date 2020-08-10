@@ -1,0 +1,97 @@
+<ion-header [translucent]="true" no-border no-shadow>
+  <ion-toolbar class="primary-toolbar lg-bg">
+    <div class="ion-text-right home-flex">
+      <img src="../../assets/img/logo.png" />
+      <ion-button  slot="end" class="transprent-btn" (click)="onClickSettings()">
+        <ion-icon name="settings-sharp" class="icon-size"></ion-icon>
+      </ion-button>
+    </div>
+    <div>
+      <div class="ion-text-center home-icon">
+        <!-- <ion-icon *ngIf="!imgUrl" name="person-circle-outline"></ion-icon> -->  
+        <ion-avatar class="profile-img box-shadow">
+          <img src="../../assets/icon/profile.png" *ngIf="imgUrl === '' " class="default-image" />
+          <img *ngIf="imgUrl !== '' " [src]="imgUrl" class="pro-dp box-shadow"/>
+        </ion-avatar> 
+        <ion-title class="ion-text-uppercase ion-padding-bottom math-title">{{service.userData?.userDetails?.profileName ? service.userData?.userDetails?.profileName : 'Welcome'}}</ion-title> 
+      </div>
+    </div>
+  </ion-toolbar>
+  <!-- <ion-toolbar class="custom-toolbar-background">
+    <div class="ion-text-center home-icon">
+      <ion-icon name="person-circle-outline"></ion-icon>
+      <div class="title math-title">Math Wars</div>
+    </div>
+  </ion-toolbar> -->
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="content-center">
+    <div class="ionic-h">
+      <ion-grid class="home-grid">
+        <ion-row>
+          <ion-col>
+            <ion-card class="home-card" (click)="onClickPractice()">
+              <ion-card-content class="ion-text-center">
+                <ion-avatar class="home-grid practice">
+                  <img src="../../assets/icon/pracitce.png" />
+                </ion-avatar>
+                <!-- <ion-icon class="one" name="people"></ion-icon> -->
+                <p class="practice-text">Practice</p>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card class="home-card" (click)="onClickMathCruncher()">
+              <ion-card-content class="ion-text-center">
+                <ion-avatar class="home-grid numbercrun">
+                  <img src="../../assets/icon/number.png" />
+                </ion-avatar>
+                <!-- <ion-icon class="three" name="calculator-outline"></ion-icon> -->
+                <p class="number-text">Number Cruncher</p>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" offset="3">
+            <ion-card class="home-card" (click)="onClickBattle()">
+              <ion-card-content class="ion-text-center">
+                <ion-avatar class="home-grid battle">
+                  <img src="../../assets/icon/battel.png" />
+                </ion-avatar>
+                <!-- <ion-icon class="two" name="close-circle"></ion-icon> -->
+                <p class="battle-text">Battle</p>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <ion-card class="home-card" (click)="onClickProfile()">
+              <ion-card-content class="ion-text-center">
+                <ion-avatar class="home-grid profile">
+                  <img src="../../assets/icon/profile.png" />
+                </ion-avatar>
+                <!-- <ion-icon class="four" name="close-circle"></ion-icon> -->
+                <p class="profile-text">Profile</p>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card class="home-card" (click)="onClickProfile()" disabled='true'>
+              <ion-card-content class="ion-text-center">
+                <ion-avatar class="home-grid friends">
+                  <img src="../../assets/icon/friends.png" />
+                </ion-avatar>
+                <!-- <ion-icon class="two" name="close-circle"></ion-icon> -->
+                <p class="friends-text">Friends</p>
+              </ion-card-content>
+              <!-- <ion-icon class="friends" name="people-circle-outline"></ion-icon> -->
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

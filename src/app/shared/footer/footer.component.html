@@ -1,0 +1,31 @@
+<ion-footer class="box-shadow">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="3">
+        <ion-fab-button size="small" color="danger" class="footer-btn box-shadow" (click)="onClickFooter('clear')">
+          <!-- <ion-icon name="close-outline"></ion-icon> -->
+          <ion-avatar class="footer-grid close">
+            <img src="../../assets/icon/close.png" />
+          </ion-avatar>
+        </ion-fab-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-fab-button [disabled]="disableSkip" size="small" color="warning" class="footer-btn box-shadow" (click)="onClickFooter('skip')">
+          <!-- <ion-icon name="flag-outline"></ion-icon> -->
+          <ion-avatar class="footer-grid eraser">
+            <img src="../../assets/icon/eraser.png" />
+          </ion-avatar>
+        </ion-fab-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-fab-button [disabled]="!isQuestionLoaded" size="small" color="success" class="footer-btn box-shadow"
+          (click)="onClickFooter('submit')">
+          <!-- <ion-icon name="checkmark-outline"></ion-icon> -->
+          <ion-avatar class="footer-grid right">
+            <img src="../../assets/icon/right.png" />
+          </ion-avatar>
+        </ion-fab-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

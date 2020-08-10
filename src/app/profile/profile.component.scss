@@ -1,0 +1,67 @@
+
+
+.custom-card {
+    margin: 15px 30px;
+    border-radius:20px;
+    background: #e9f6ff;
+    .card-bg {
+        --background: linear-gradient(#18ccff, #549ffc);
+        padding: 10px;
+    }
+    ion-card-content{
+        .pro-dp{
+            border: 3px solid #f5f5f5;
+            margin: 15px auto 10px;
+            width: 22vw;
+            height: 22vw;
+            position: relative;
+                img{
+                    object-fit: cover;
+                }
+            .default-icon{
+                font-size: 5rem;
+            }
+            .profile-edit{
+                position: absolute;
+                font-size: 1.2rem;
+                bottom: 0px;
+                right: -9px;
+                background: #2fbafe;
+                color: #fff;
+                border-radius: 100%;
+                padding: 6px;
+            }
+            .edit-input{
+                position: absolute;
+                bottom: -5px;
+                right: -10px;
+                width: 15vw;
+                opacity: 0;
+               }
+        }
+       
+    }
+    .title-color{
+        color:#fff;
+        font-size: 1.2rem;
+    }
+}
+
+.upload-btn{
+    --background: transparent;
+    --box-shadow: none;
+    --color: #737373;
+    .upload-icon{
+        position: absolute;
+        display: flex;
+        align-items: center;
+    }
+    ion-icon{
+        padding-right: 11px;
+    font-size: 1.5rem;
+    }
+    .upload-input{
+        opacity: 0;
+    }
+   
+}

@@ -1,0 +1,74 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-grid class="ion-padding-top">
+    <ion-row>
+      <ion-col>
+        <div class="ion-text-center ion-score">Score {{questions.answeredQuestions}} / {{ questions.totalQuestions }}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-text class="font-size-3">Compleate the sequence</ion-text>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="box-number box-shadow compleate-sq" *ngFor="let number of question">
+        {{number}}
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="10" class="box-result ion-text-center"
+      [ngClass]="{'shakeit-on-right': buttonValue === 'right', 'shakeit-on-wrong':buttonValue === 'wrong' , 'shakeit-on-skip': buttonValue === 'skip' }">
+        {{enteredAnswer ? enteredAnswer : '?'}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid (click)="enteredNumbers($event)">
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="btn-size box-shadow" *ngFor="let item of [0,1,2,3,4]">
+        {{item}}
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-padding-bottom">
+      <ion-col class="btn-size box-shadow" *ngFor="let item of [5,6,7,8,9]">
+        {{item}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>
+<ion-footer class="box-shadow">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="3">
+        <ion-fab-button size="small" color="danger" class="footer-btn box-shadow" (click)="resetData()">
+          <!-- <ion-icon name="close-outline"></ion-icon> -->
+          <ion-avatar class="footer-grid close">
+            <img src="../../assets/icon/close.png" />
+          </ion-avatar>
+        </ion-fab-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-fab-button size="small" color="warning" class="footer-btn box-shadow" (click)="skip()">
+          <!-- <ion-icon name="flag-outline"></ion-icon> -->
+          <ion-avatar class="footer-grid eraser">
+            <img src="../../assets/icon/eraser.png" />
+          </ion-avatar>
+        </ion-fab-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-fab-button size="small" color="success" class="footer-btn box-shadow" (click)="checkAnswer()">
+          <!-- <ion-icon name="checkmark-outline"></ion-icon> -->
+          <ion-avatar class="footer-grid right">
+            <img src="../../assets/icon/right.png" />
+          </ion-avatar>
+        </ion-fab-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

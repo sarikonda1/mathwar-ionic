@@ -1,0 +1,21 @@
+
+// .new-background-color{
+//   bottom: 16px;
+//   position: relative;
+// }
+.custom-toolbar-background {
+  --background: #549ffc;
+}
+.math-title{
+  color:#fff;
+    padding-top: 20px;
+}
+ion-back-button{
+  --color: white ;
+}
+.small-font{
+  font-size: 92%;
+}
+.header-md::after{
+  display: none;
+}

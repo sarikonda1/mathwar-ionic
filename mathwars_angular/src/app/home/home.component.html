@@ -1,0 +1,35 @@
+﻿<!--<div class="card mt-4">
+    <h4 class="card-header">Players</h4>
+    <div class="card-body">
+        <li *ngFor="let player of playerList"> {{player.username}}</li>
+    </div>
+</div>-->
+<div class="card mt-4" *ngIf="!gameStarted">
+    <h4 class="card-header">Battle</h4>
+    <div class="card-body">
+        <button *ngIf="!gameStatus" (click)="battle()">Start Battle</button>
+      <div *ngIf="gameStatus">{{gameStatus.message}}</div>
+    </div>
+</div>
+<div class="card mt-4" *ngIf="battlePlayers">
+    <h4 class="card-header">Players</h4>
+    <div class="card-body">
+      <li *ngFor="let player of battlePlayers"> {{player.userdetails[0].username}} : {{player.score}}</li>
+    </div>
+</div>
+
+<div class="card mt-4"  *ngIf="!endGame && battleResponse">
+  <h4 class="card-header">Battle</h4>
+  <div class="card-body">
+    <ng-container *ngFor="let question of battleResponse.questions; let i = index">
+      <div *ngIf="i === currentQuestion">
+        {{ question.question }}
+        <form [formGroup]="questionForm" (ngSubmit)="submitQuestion(i, questionForm.value)">
+          <input id="answer" type="text" formControlName="answer">
+          <button class="button" type="submit">Submit</button>
+        </form>
+
+      </div>
+    </ng-container>
+  </div>
+</div>

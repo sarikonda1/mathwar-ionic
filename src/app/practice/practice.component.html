@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar [ngClass]="!selectedLevel ? 'primary-toolbar': 'secondary-toolbar'">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center ion-text-uppercase math-title title-space">
+      Practice
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <app-level-selector *ngIf="!selectedLevel; else questions_template" (onSelectData)="onSelect($event)">
+  </app-level-selector>
+  <ng-template #questions_template>
+    <ion-grid class="ion-padding ion-no-padding-bottom">
+      <ion-row *ngIf="questions.totalQuestions">
+        <ion-col>
+          <div class="ion-text-center ion-score">Score {{questions.answeredQuestions}} /
+            {{ questions.totalQuestions - 1 }}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="title-text">
+          <ion-text class="font-size-3">{{question?.questionTitle}}</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div [style.height.px]="deviceHeight" *ngIf="question?.answerType === 5; else all_quens">
+      <app-number-cruncher-question [inputQuestion]="questionSplit" [showOperators]="isShowOperator"
+        (sendAnswer)="enteredNumber($event)" [answerBoxClass]="buttonValue" (questionLoaded)="onQuestionLoaded($event)"
+        [enteredAnswer]="enteredAnswer">
+      </app-number-cruncher-question>
+    </div>
+    <ng-template #all_quens>
+      <div [style.height.px]="deviceHeight">
+        <app-question [inputQuestion]="questionSplit" [showOperators]="isShowOperator"
+          (sendAnswer)="enteredNumber($event)" [answerBoxClass]="buttonValue" [enteredAnswer]="enteredAnswer"
+          [operatorClass]="operatorClassRequired" *ngIf="isConfigLoaded | async">
+        </app-question>
+      </div>
+    </ng-template>
+  </ng-template>
+</ion-content>
+
+<app-footer *ngIf="selectedLevel" [isQuestionLoaded]="isQuestionLoaded" (action)="onAction($event)"></app-footer>

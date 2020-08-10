@@ -1,0 +1,43 @@
+<ion-header [translucent]="true" no-border no-shadow>
+  <ion-toolbar class="primary-toolbar lg-bg">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center title-space">
+      <img class="mathwar-logo" src="../../assets/img/logo.png" />
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+    <form [formGroup]="profileForm" class="formtop ion-padding" autocomplete="off" (keyup.enter)="onSubmit()">
+      <h3 class="ion-text-center ion-padding-top">Profile</h3>
+      <ion-list lines="full" class="ion-no-margin ion-no-padding custon-bg">
+        <ion-item lines="none" class="ion-margin">
+          <ion-icon name="person-outline" slot="start" class="ion-input-icon"></ion-icon>
+          <ion-input type="text" formControlName="profileName" placeholder="Profile Name"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-card class="custom-card">
+        <ion-card-header class="card-bg">
+          <ion-card-subtitle class="ion-text-center title-color">Avatar</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content class="ion-text-center ion-padding-top">
+          <ion-avatar class="pro-dp box-shadow">
+            <!-- <ion-icon name="person-circle-outline" class="default-icon" *ngIf="isProfile()"></ion-icon> -->
+            <img src="../../assets/icon/profile.png" *ngIf="isProfile()" class="default-image" />
+            <span>
+              <ion-icon *ngIf="!isProfile()" name="pencil-sharp" class="box-shadow profile-edit"></ion-icon>
+              <ion-input type="file" accept="image/*" class="edit-input" (change)="fileUpload($event)"></ion-input>
+            </span>
+
+            <img *ngIf="!isProfile()" [src]="imageUrl" />
+          </ion-avatar>      
+        </ion-card-content>
+      </ion-card>
+      <ion-button class="upload-btn" *ngIf="isProfile()">
+        <span class="upload-icon"><ion-icon name="cloud-upload-outline"></ion-icon><span>Select avatar</span> </span>
+        <ion-input type="file" accept="image/*" #studentImage formControlName="file" class="upload-input" (change)="fileUpload($event)" ></ion-input>
+      </ion-button>
+      <ion-button expand="block" class="ion-margin-horizontal btn-ctm primary-btnbg" (click)="onSubmit()">Update</ion-button>
+    </form>
+</ion-content>

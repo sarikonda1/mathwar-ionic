@@ -1,0 +1,157 @@
+// .math-title{
+//     padding-right: 80px;
+//   }
+  .waiting-text{
+    text-align: center;
+    font-size: 1.2rem;
+    color: #525252;
+  }
+  
+
+  .ion-name, .ion-points{
+    font-size: 1.2rem;
+    color: #686d70;
+  }
+  .ion-icons{
+    font-size: 3rem;
+  }
+
+  .number.sucess{
+    background: #36a6da;
+}
+.multiplayer-progress{
+ padding: 10px;
+  ion-row{
+    &:last-child{
+      padding-top: 10px;
+    }
+  }
+}
+
+ion-content {
+  --background: #e9eef4;
+}
+.score-icon{
+  font-size: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+  border-radius: 100%;
+  padding: 5px;
+}
+.score-card{
+    display: flex;
+    align-items: center;
+    padding: 6px 0px;
+    .score-rank{
+      font-size: 1.3rem;
+    }
+    .score-pts{
+      font-size: 1.2rem;
+    }
+    .score-name{
+      font-size: 1.1rem;
+      padding-left: 15px;
+    }
+}
+.current-user{
+  color: #FF9800;
+}
+.score-titles{
+  color: #f5f5f5;
+  padding: 15px 20px 12px;
+  background: #4da4fc;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+}
+
+.ion-display-progress{
+  display: flex;
+  align-items: center;
+  // margin-right: 0px;
+  .you{
+    --background: #5bcc0c;
+  }
+  .others{
+    --background: #12d9ff
+  }
+  ion-progress-bar{
+      height: 30px;
+      position: relative;
+      left: 18px;
+      border: 4px solid #fff;
+  }
+  .ion-curve{
+      background: #ababab;
+      color: #fff;
+      border-radius: 18px;
+      padding: 2px;
+      width: 91px;
+      text-align: right;
+      padding-right: 11px;
+  }
+}
+.person-name{
+  padding-left: 33px;
+  padding-top: 8px;
+  font-size: 1.1rem;
+}
+.timer{
+  border: 3px solid #fff;
+  border-radius: 30px;
+  height: 40px;
+  color: #fff;
+  font-size: 1.2rem;
+  img{
+    padding-right: 5px;
+    width: 6vw;
+  }
+}
+.timer.more{
+  background: #00b88f;
+}
+.timer.danger{
+  background: #E91E63;
+}
+
+.d-flex{
+  height: 68%;
+}
+.waiting-player{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 95%;
+  place-content: center;
+  .waiting-icon{
+    width: 80%;
+    height: 200px;
+    max-width: 250px;
+    border: 6px solid #fff;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    place-content: center;
+    background: #e9f6ff;
+    background-image: url('../../assets/img/battel2.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 90%;
+  }
+}
+.profile-img{
+  width: 16vw;
+  height: 16vw;
+  margin:initial
+}
+.vs{
+  font-size: 1.5rem;
+}
+.default-img{
+  width: 16vw;
+  height: 16vw;
+  border: 3px solid #f5f5f5;
+  img{
+    background: #00d6fc;
+    padding: 10px;
+  }
+}

@@ -1,0 +1,22 @@
+
+  <ion-row class="ion-justify-content-center" *ngIf="!showOperators">
+    <ion-col (click)="enteredNumber(getIcon())" class="btn-size box-shadow">
+      +/-
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-justify-content-center" *ngIf="!showOperators">
+    <ion-col *ngFor="let item of [0,1,2,3,4]" (click)="enteredNumber(item)" class="btn-size box-shadow">
+      {{item}}
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-justify-content-center" [ngClass]="!showOperators ? 'ion-padding-bottom' : ''" *ngIf="!showOperators">
+    <ion-col *ngFor="let item of [5,6,7,8,9]" (click)="enteredNumber(item)" class="btn-size box-shadow">
+      {{item}}
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-justify-content-center ion-padding-bottom" *ngIf="showOperators">
+    <ion-col *ngFor="let item of ['+' , '-' , '÷', '×', '^']" class="btn-size box-shadow"
+      (click)="enteredNumber(item)">
+      {{item}}
+    </ion-col>
+  </ion-row>
